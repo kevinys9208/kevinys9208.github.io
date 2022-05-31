@@ -1,4 +1,4 @@
-import { RATIO, TO_RADIAN, S_MF, SS, SW, SH } from './resource.js';
+import { RATIO, TO_RADIAN, S_MF, SS, SW, SH } from './Resource.js';
 
 import GameManager from './GameManager.js';
 import SrcManager from './SrcManager.js';

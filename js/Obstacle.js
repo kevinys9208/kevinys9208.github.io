@@ -1,4 +1,4 @@
-import { RATIO } from './resource.js';
+import { RATIO } from './Resource.js';
 
 import GameManager from './GameManager.js';
 import SrcManager from './SrcManager.js';

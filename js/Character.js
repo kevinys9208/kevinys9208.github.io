@@ -1,8 +1,8 @@
-import { RATIO, IT, TILE_HALF, C_WF, CS, CW, CH, SH } from './resource.js';
+import { RATIO, IT, TILE_HALF, C_WF, CS, CW, CH, SH } from './Resource.js';
 
 import GameManager from './GameManager.js'
 import SrcManager from './SrcManager.js';
-import Scene from './scene.js';
+import Scene from './Scene.js';
 import Spell from './Spell.js';
 
 export default class Character {

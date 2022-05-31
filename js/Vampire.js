@@ -2,7 +2,7 @@ import { RATIO, TO_RADIAN, IT, TILE_HALF, E_VF, ES, EW, EH } from './Resource.js
 
 import GameManager from "./GameManager.js";
 import SrcManager from './SrcManager.js';
-import Scene from "./scene.js";
+import Scene from "./Scene.js";
 
 import Spell from './Espell.js';
 

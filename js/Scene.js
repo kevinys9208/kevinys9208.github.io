@@ -1,7 +1,7 @@
-import { TO_RADIAN, TILE_SIZE, TILE_HALF } from './resource.js';
+import { TO_RADIAN, TILE_SIZE, TILE_HALF } from './Resource.js';
 
 import SceneMap from './Map.js'
-import Character from './character.js'
+import Character from './Character.js'
 import Obstacle from './Obstacle.js';
 import Effect from './Effect.js';
 import GameManager from './GameManager.js';
