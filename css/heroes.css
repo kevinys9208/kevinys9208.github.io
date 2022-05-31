@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Gallant';
+  src: url(../resources/font/GALLANT.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bohyun';
+  src: url(../resources/font/bohyun.ttf) format('truetype');
+}
+
+@media (min-width: 992px) {
+  .rounded-lg-3 { border-radius: .3rem; }
+}
+
+.gallant {
+  font-family: 'Gallant';
+}
+
+.bohyun {
+  font-family: 'Bohyun';
+}
