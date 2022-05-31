@@ -315,7 +315,7 @@ function initializeControlEvent() {
 }
 
 function initializeDefaultServerIP() {
-	document.getElementById('ip').value = 'wss://118.222.95.173:45000/break';
+	document.getElementById('ip').value = 'wss://jase.iptime.org:45000/break';
 }
 
 function waitReadyState() {
