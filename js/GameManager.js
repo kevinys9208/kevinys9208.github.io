@@ -1,7 +1,7 @@
 import { TILE_SIZE, CR, SR, MR, ER, OR, UR, FR } from './Resource.js'
 
 import SrcManager from './SrcManager.js'
-import Scene from './scene.js';
+import Scene from './Scene.js';
 
 let GAME_MANAGER;
 
