@@ -167,7 +167,7 @@ function initializeWebSocket() {
 		webSocket.close();
 	}
 
-	webSocket = new WebSocket(document.getElementById('ip').value);
+	webSocket = new WebSocket(document.getElementById('ip').value, 'HTTP/1.1');
 
 	webSocket.onopen = function() {
 		console.log('webSocket open');
