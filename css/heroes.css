@@ -32,3 +32,19 @@
 .fs-7 {
   font-size: smaller;
 }
+
+.rfs-d2-title {
+  font-size: calc(10px + 0.6vw);
+}
+
+.rfs-d2-contents {
+  font-size: calc(10px + 0.3vw);
+}
+
+.rfs-bohyun-title {
+  font-size: calc(15px + 0.8vw);
+}
+
+.rfs-bohyun-contents {
+  font-size: calc(15px + 0.4vw);
+}
