@@ -31,10 +31,6 @@ var otherImg;
 var backImg;
 var filterImg;
 
-var nowStart;
-var currStart;
-var targetDef;
-
 var webSocket;
 
 var characterId;
@@ -146,16 +142,6 @@ async function render() {
 	if (document.querySelector('input[name="filter"]:checked').value == 'true') {
 		ctx.drawImage(filterCanvas, 0, 0);
 	}
-
-	nowStart = performance.now();
-
-	def = nowStart - currStart;
-				
-	if (def <= targetDef) {
-		await new Promise(resolve => sleep(resolve, targetDef - def));
-	}
-
-	currStart = performance.now();
 	
 	stats.end();
 	
@@ -307,10 +293,6 @@ function initializeControlEvent() {
 			input.value = 'wss://' + ipSelected + '/break';
 			input.disabled = true;
 		}
-	});
-	
-	document.getElementById('frameSelect').addEventListener('change', function() {
-		targetDef = this.options[this.selectedIndex].value;
 	});
 }
 
