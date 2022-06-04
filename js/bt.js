@@ -49,7 +49,7 @@ function initializeStatsDom() {
 	document.getElementById('stageWrapper').appendChild(stats.dom);
 }
 
-function initializeVariables() {
+async function initializeVariables() {
 	objectMap = new Map();
 	
 	functionMap = new Map();
@@ -60,6 +60,8 @@ function initializeVariables() {
 	functionMap.set('O', handleOn);
 	functionMap.set('E', handleError);
 	functionMap.set('R', handleResult);
+
+	var imageCount = 0;
 
 	canvas = document.getElementById('stage');
 	ctx = canvas.getContext('2d');
@@ -74,6 +76,9 @@ function initializeVariables() {
 		barrageCanvas.height = 60;
 
 		barrageCtx.drawImage(barrageImg, 0, 0);
+
+		imageCount++;
+		console.log('raindrop.png => loaded.');
 	};
 
 	selfImg = new Image();
@@ -86,6 +91,9 @@ function initializeVariables() {
 		selfCanvas.height = 60;
 
 		selfCtx.drawImage(selfImg, 0, 0);
+
+		imageCount++;
+		console.log('character_self.png => loaded.');
 	};
 
 	otherImg = new Image();
@@ -98,6 +106,9 @@ function initializeVariables() {
 		otherCanvas.height = 60;
 
 		otherCtx.drawImage(otherImg, 0, 0);
+
+		imageCount++;
+		console.log('character_other.png => loaded.');
 	};
 
 	backImg = new Image();
@@ -110,6 +121,9 @@ function initializeVariables() {
 		backCanvas.height = 800;
 
 		backCtx.drawImage(backImg, 0, 0);
+
+		imageCount++;
+		console.log('background.png => loaded.');
 	};
 
 	filterImg = new Image();
@@ -123,9 +137,15 @@ function initializeVariables() {
 
 		filterCtx.drawImage(filterImg, 0, 0);
 
-		currStart = performance.now();
 		window.requestAnimationFrame(render);
+
+		imageCount++;
+		console.log('filter.png => loaded.');
 	};
+
+	while (imageCount != 5) {
+		await new Promise(r => setTimeout(r, 100));
+	}
 
 	notice = document.getElementById('notice');
 	number = 3;
