@@ -298,6 +298,7 @@ function initializeControlEvent() {
 
 function initializeDefaultServerIP() {
 	document.getElementById('ip').value = 'wss://jase.iptime.org:45000/break';
+	window.open('./bt_ws.html', 'Web socket connection allowed.', 'width=400px, height=400px');
 }
 
 function waitReadyState() {
