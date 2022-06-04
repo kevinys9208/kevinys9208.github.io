@@ -39,8 +39,9 @@ body {
 .uiButton {
     font-family: 'Gallant';
     font-weight: bold;
-    color: #f0f8ff;
+    font-size: 30px;
 
+    color: #f0f8ff;
     background-color: rgba(0, 0, 0, 0);
 
     align-self: center;
@@ -57,6 +58,10 @@ body {
 
     opacity: 0;
     z-index: 1;
+}
+
+.hide {
+    display: none;
 }
 
 #startBtn {
