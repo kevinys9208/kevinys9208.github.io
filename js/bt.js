@@ -35,7 +35,7 @@ var webSocket;
 
 var characterId;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
 	initializeStatsDom();
 	await initializeVariables();
 	initializeControlEvent();
