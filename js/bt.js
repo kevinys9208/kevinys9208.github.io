@@ -37,7 +37,7 @@ var characterId;
 
 document.addEventListener('DOMContentLoaded', function() {
 	initializeStatsDom();
-	initializeVariables();
+	await initializeVariables();
 	initializeControlEvent();
 	initializeDefaultServerIP();
 });
@@ -151,7 +151,7 @@ async function initializeVariables() {
 	number = 3;
 }
 
-async function render() {
+function render() {
 	stats.begin();
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
