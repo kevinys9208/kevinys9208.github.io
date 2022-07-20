@@ -143,8 +143,11 @@ async function initializeVariables() {
 		console.log('filter.png => loaded.');
 	};
 
-	while (imageCount != 5) {
+	while (true) {
 		await new Promise(r => setTimeout(r, 100));
+
+		if (imageCount >= 5)
+			break;
 	}
 
 	notice = document.getElementById('notice');
