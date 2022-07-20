@@ -35,9 +35,9 @@ var webSocket;
 
 var characterId;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
 	initializeStatsDom();
-	initializeVariables();
+	await initializeVariables();
 	initializeControlEvent();
 	initializeDefaultServerIP();
 });
@@ -49,7 +49,7 @@ function initializeStatsDom() {
 	document.getElementById('stageWrapper').appendChild(stats.dom);
 }
 
-function initializeVariables() {
+async function initializeVariables() {
 	objectMap = new Map();
 	
 	functionMap = new Map();
