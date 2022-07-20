@@ -35,9 +35,9 @@ var webSocket;
 
 var characterId;
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', function() {
 	initializeStatsDom();
-	await initializeVariables();
+	initializeVariables();
 	initializeControlEvent();
 	initializeDefaultServerIP();
 });
@@ -49,7 +49,7 @@ function initializeStatsDom() {
 	document.getElementById('stageWrapper').appendChild(stats.dom);
 }
 
-async function initializeVariables() {
+function initializeVariables() {
 	objectMap = new Map();
 	
 	functionMap = new Map();
@@ -137,8 +137,6 @@ async function initializeVariables() {
 
 		filterCtx.drawImage(filterImg, 0, 0);
 
-		window.requestAnimationFrame(render);
-
 		imageCount++;
 		console.log('filter.png => loaded.');
 	};
@@ -146,9 +144,13 @@ async function initializeVariables() {
 	while (true) {
 		await new Promise(r => setTimeout(r, 100));
 
-		if (imageCount >= 5)
+		if (imageCount >= 5) {
+			console.log('load complete.');
 			break;
+		}
 	}
+
+	window.requestAnimationFrame(render);
 
 	notice = document.getElementById('notice');
 	number = 3;
