@@ -40,7 +40,7 @@ export default class Character {
 
     updateIndex(ch) {
         if (!ch.isIdle) {
-            if (this.#checkDirOpposite) {
+            if (ch.checkDirOpposite()) {
                 if (--ch.fIndex < 1) {  ch.fIndex = C_WF; }
             } else {
                 if (++ch.fIndex > C_WF) {  ch.fIndex = 1; }
@@ -118,7 +118,7 @@ export default class Character {
         this.y += (CS * weight * (dir == Scene.SS ? 1 : -1));
     }
 
-    #checkDirOpposite() {
+    checkDirOpposite() {
         var opposite = false;
 
         switch (this.viewDir) {
