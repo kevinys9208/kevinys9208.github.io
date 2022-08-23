@@ -124,49 +124,49 @@ export default class Character {
         switch (this.viewDir) {
             case Scene.NN:
                 if (this.dir == Scene.SS || this.dir == Scene.SW ||  this.dir == Scene.SE) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break
 
             case Scene.NE:
                 if (this.dir == Scene.SW || this.dir == Scene.WW ||  this.dir == Scene.SS) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.EE:
                 if (this.dir == Scene.WW || this.dir == Scene.SW ||  this.dir == Scene.NW) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.SE:
                 if (this.dir == Scene.NW || this.dir == Scene.NN ||  this.dir == Scene.WW) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.SS:
                 if (this.dir == Scene.NW || this.dir == Scene.NN ||  this.dir == Scene.NE) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.SW:
                 if (this.dir == Scene.NE || this.dir == Scene.NN ||  this.dir == Scene.EE) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.WW:
                 if (this.dir == Scene.EE || this.dir == Scene.NE ||  this.dir == Scene.SE) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
 
             case Scene.NW:
                 if (this.dir == Scene.SE || this.dir == Scene.EE ||  this.dir == Scene.SS) {
-                    opposite == true;
+                    opposite = true;
                 }
                 break;
         }
