@@ -71,15 +71,18 @@ class GameManager {
         this.canvas.addEventListener('mousemove', (e) => {
             this.readView(e.clientX, e.clientY);
         });
-        this.canvas.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
         this.canvas.addEventListener('transitionend', () => {
             if (this.canvas.style.opacity == 1)
                 this.mainScene.createEnemy(this.stage * 10);
 
             else if (this.canvas.style.opacity == 0)
                 this.uiBox.style.zIndex = 2;
+        });
+        this.canvas.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+        });
+        this.canvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
         });
     }
 

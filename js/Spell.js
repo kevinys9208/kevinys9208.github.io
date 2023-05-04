@@ -102,10 +102,10 @@ export default class Spell {
     }
 
     #drawShadow(ctx, pointX, pointY) {
-        // ctx.save();
-        // ctx.translate(pointX, pointY);
-        // ctx.rotate(this.radian);
-        // ctx.translate(-pointX, -pointY);
+        ctx.save();
+        ctx.translate(pointX, pointY);
+        ctx.rotate(this.radian);
+        ctx.translate(-pointX, -pointY);
 
         ctx.drawImage(
             this.shadow,
@@ -119,14 +119,14 @@ export default class Spell {
             (this.height / RATIO) * 2
         );
 
-        // ctx.restore();
+        ctx.restore();
     }
 
     #drawImage(ctx, pointX, pointY) {
-        // ctx.save();
-        // ctx.translate(pointX, pointY);
-        // ctx.rotate(this.radian);
-        // ctx.translate(-pointX, -pointY);
+        ctx.save();
+        ctx.translate(pointX, pointY);
+        ctx.rotate(this.radian);
+        ctx.translate(-pointX, -pointY);
 
         ctx.drawImage(
             this.img,
@@ -140,6 +140,6 @@ export default class Spell {
             (this.height / RATIO) * 2
         );
 
-        // ctx.restore();
+        ctx.restore();
     }
 }
