@@ -52,11 +52,11 @@ export default class Scene {
         this.character.orthoY = this.#getOrthoY(x, y);
     }
 
-    updateCoord(s) {
-        s.updateCharacterCoord();
-        s.updateMapCoord();
-        s.updateEnemyCoord();
-        s.updateSpellCoord();
+    updateCoord() {
+        this.updateCharacterCoord();
+        this.updateMapCoord();
+        this.updateEnemyCoord();
+        this.updateSpellCoord();
     }
 
     updateCharacterCoord() {
