@@ -33,10 +33,10 @@ export default class Spell {
         this.scene.spellMap.set(this.id, this);
 
         this.fIndex = 0;
-        // this.fIndexUpdator = setTimeout(function run(c) {
-        //     c.updateIndex();
-        //     c.fIndexUpdator = setTimeout(run, 24, c);
-        // }, 24, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 24, c);
+        }, 24, this);
     }
 
     updateIndex() {
@@ -83,7 +83,7 @@ export default class Spell {
     }
 
     removeFromMap() {
-        // clearTimeout(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.spellMap.delete(this.id);
     }
@@ -102,10 +102,10 @@ export default class Spell {
     }
 
     #drawShadow(ctx, pointX, pointY) {
-        ctx.save();
-        ctx.translate(pointX, pointY);
-        ctx.rotate(this.radian);
-        ctx.translate(-pointX, -pointY);
+        // ctx.save();
+        // ctx.translate(pointX, pointY);
+        // ctx.rotate(this.radian);
+        // ctx.translate(-pointX, -pointY);
 
         ctx.drawImage(
             this.shadow,
@@ -119,14 +119,14 @@ export default class Spell {
             (this.height / RATIO) * 2
         );
 
-        ctx.restore();
+        // ctx.restore();
     }
 
     #drawImage(ctx, pointX, pointY) {
-        ctx.save();
-        ctx.translate(pointX, pointY);
-        ctx.rotate(this.radian);
-        ctx.translate(-pointX, -pointY);
+        // ctx.save();
+        // ctx.translate(pointX, pointY);
+        // ctx.rotate(this.radian);
+        // ctx.translate(-pointX, -pointY);
 
         ctx.drawImage(
             this.img,
@@ -140,6 +140,6 @@ export default class Spell {
             (this.height / RATIO) * 2
         );
 
-        ctx.restore();
+        // ctx.restore();
     }
 }
