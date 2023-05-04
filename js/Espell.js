@@ -32,8 +32,8 @@ export default class Espell {
         this.scene.objectMap.set(this.id, this);
         this.scene.spellMap.set(this.id, this);
 
-        this.fIndex = 19;
-        // this.fIndexUpdator = setInterval(this.updateIndex, 24, this);
+        this.fIndex = 0;
+        this.fIndexUpdator = setInterval(this.updateIndex, 24, this);
     }
 
     updateIndex(s) {
@@ -71,7 +71,7 @@ export default class Espell {
     }
 
     removeFromMap() {
-        // clearInterval(this.fIndexUpdator);
+        clearInterval(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.spellMap.delete(this.id);
     }
@@ -82,7 +82,7 @@ export default class Espell {
         const pointX = this.x - map.getOriginX();
         let pointY = this.y - map.getOriginY();
 
-        // this.#drawShadow(ctx, pointX, pointY);
+        this.#drawShadow(ctx, pointX, pointY);
 
         pointY -= ((this.height / RATIO) / 3);
 
