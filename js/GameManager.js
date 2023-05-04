@@ -174,9 +174,9 @@ class GameManager {
     }
 
     readAttack() {
-        if (this.controlMap.get('onclick')) {
-            this.mainScene.character.attack();
-        }
+        // if (this.controlMap.get('onclick')) {
+        //     this.mainScene.character.attack();
+        // }
     }
 
     stop() {
