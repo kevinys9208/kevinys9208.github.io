@@ -78,10 +78,10 @@ class GameManager {
             else if (this.canvas.style.opacity == 0)
                 this.uiBox.style.zIndex = 2;
         });
-        this.canvas.addEventListener('dblclick', (e) => {
+        document.addEventListener('dblclick', (e) => {
             e.preventDefault();
         });
-        this.canvas.addEventListener('contextmenu', (e) => {
+        document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
     }
