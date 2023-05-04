@@ -49,11 +49,11 @@ export default class Spell {
         this.#updateX();
         this.#updateY();
         
-        let isCollision = false;
-        isCollision = this.#checkEnemyCollision();
-        if (isCollision) {
-            this.removeFromMap();
-        }
+        // let isCollision = false;
+        // isCollision = this.#checkEnemyCollision();
+        // if (isCollision) {
+        //     this.removeFromMap();
+        // }
         isCollision = this.scene.updateOrthoCoord(this);
         if (isCollision) {
             this.removeFromMap();
@@ -94,7 +94,7 @@ export default class Spell {
         const pointX = this.x - map.getOriginX();
         let pointY = this.y - map.getOriginY();
 
-        this.#drawShadow(ctx, pointX, pointY);
+        // this.#drawShadow(ctx, pointX, pointY);
 
         pointY -= ((this.height / RATIO) / 3);
 
