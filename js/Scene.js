@@ -37,6 +37,11 @@ export default class Scene {
             c.updateCoord();
             c.coordUpdator = setTimeout(run, 16, c);
         }, 16, this);
+
+        this.spellUpdator = setTimeout(function run(c) {
+            c.updateSpellCoord();
+            c.spellUpdator = setTimeout(run, 16, c);
+        }, 16, this);
     }
 
     setCoord() {
@@ -56,7 +61,7 @@ export default class Scene {
         this.updateCharacterCoord();
         this.updateMapCoord();
         this.updateEnemyCoord();
-        this.updateSpellCoord();
+        // this.updateSpellCoord();
     }
 
     updateCharacterCoord() {
