@@ -50,10 +50,12 @@ export default class Scene {
     }
 
     updateCoord(s) {
+        let start = new Date();
         s.updateCharacterCoord();
         s.updateMapCoord();
         s.updateEnemyCoord();
         s.updateSpellCoord();
+        console.log(start - new Date());
     }
 
     updateCharacterCoord() {
