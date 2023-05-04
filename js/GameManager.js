@@ -58,16 +58,16 @@ class GameManager {
     }
 
     #initMouseControl() {
-        // this.canvas.addEventListener('mousedown', (e) => {
-        //     if (e.button == 0) {
-        //         this.controlMap.set('onclick', true);
-        //     }
-        // });
-        // this.canvas.addEventListener('mouseup', (e) => {
-        //     if (e.button == 0) {
-        //         this.controlMap.set('onclick', false);
-        //     }
-        // });
+        this.canvas.addEventListener('mousedown', (e) => {
+            if (e.button == 0) {
+                this.controlMap.set('onclick', true);
+            }
+        });
+        this.canvas.addEventListener('mouseup', (e) => {
+            if (e.button == 0) {
+                this.controlMap.set('onclick', false);
+            }
+        });
         this.canvas.addEventListener('mousemove', (e) => {
             this.readView(e.clientX, e.clientY);
         });
@@ -170,7 +170,7 @@ class GameManager {
     }
 
     readAttack() {
-        if (this.controlMap.get('Space')) {
+        if (this.controlMap.get('onclick')) {
             this.mainScene.character.attack();
         }
     }
