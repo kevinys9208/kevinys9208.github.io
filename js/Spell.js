@@ -9,6 +9,7 @@ export default class Spell {
 
     constructor(dir, x, y, scene, angle) {
         this.id = ++GameManager.id;
+        console.log(this.id);
 
         this.width = SW;
         this.height = SH;
