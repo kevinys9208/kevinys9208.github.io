@@ -33,7 +33,10 @@ export default class Scene {
         this.enemyMap = new Map();
 
         this.setCoord();
-        this.coordUpdator = setInterval(this.updateCoord, 16, this);
+        this.coordUpdator = setTimeout(function run(c) {
+            c.updateCoord();
+            c.coordUpdator = setTimeout(run, 16, c);
+        }, 16, this);
     }
 
     setCoord() {
