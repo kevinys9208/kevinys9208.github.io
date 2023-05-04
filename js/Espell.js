@@ -35,7 +35,7 @@ export default class Espell {
         this.fIndex = 0;
         this.fIndexUpdator = setTimeout(function run(c) {
             c.updateIndex();
-            c.fIndexUpdator = setTimeout(run, 24, cr);
+            c.fIndexUpdator = setTimeout(run, 24, c);
         }, 24, this);
     }
 

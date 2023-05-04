@@ -42,7 +42,7 @@ export default class Skeleton {
         this.fIndex = 0;
         this.fIndexUpdator = setTimeout(function run(c) {
             c.updateIndex();
-            c.fIndexUpdator = setTimeout(run, 28, cr);
+            c.fIndexUpdator = setTimeout(run, 28, c);
         }, 28, this);
         
         this.scene.objectMap.set(this.id, this);
