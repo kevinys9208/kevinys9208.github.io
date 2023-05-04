@@ -54,7 +54,7 @@ export default class Spell {
         // if (isCollision) {
         //     this.removeFromMap();
         // }
-        isCollision = this.scene.updateOrthoCoord(this);
+        let isCollision = this.scene.updateOrthoCoord(this);
         if (isCollision) {
             this.removeFromMap();
         }
