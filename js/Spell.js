@@ -33,12 +33,15 @@ export default class Spell {
         this.scene.spellMap.set(this.id, this);
 
         this.fIndex = 0;
-        this.fIndexUpdator = setInterval(this.updateIndex, 24, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 24, cr);
+        }, 24, this);
     }
 
-    updateIndex(s) {
-        if (++s.fIndex > S_MF) {
-            s.fIndex = S_MF - 40;
+    updateIndex() {
+        if (++this.fIndex > S_MF) {
+            this.fIndex = S_MF - 40;
         }
     }
 
@@ -80,7 +83,7 @@ export default class Spell {
     }
 
     removeFromMap() {
-        clearInterval(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.spellMap.delete(this.id);
     }

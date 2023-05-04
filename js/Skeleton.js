@@ -40,7 +40,10 @@ export default class Skeleton {
         this.life = this.maxLife;
 
         this.fIndex = 0;
-        this.fIndexUpdator = setInterval(this.updateIndex, 28, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 28, cr);
+        }, 28, this);
         
         this.scene.objectMap.set(this.id, this);
         this.scene.enemyMap.set(this.id, this);
@@ -116,10 +119,10 @@ export default class Skeleton {
         this.y += ES * this.diagonalY;
     }
 
-    updateIndex(s) {
-        if (++s.fIndex > E_SF) {
-            s.fIndex = 0;
-            s.updateDir(++s.rateCnt);
+    updateIndex() {
+        if (++this.fIndex > E_SF) {
+            this.fIndex = 0;
+            this.updateDir(++this.rateCnt);
         }
     }
 
@@ -232,7 +235,7 @@ export default class Skeleton {
 
     removeFromMap() {
         clearTimeout(this.timeout);
-        clearInterval(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.enemyMap.delete(this.id);
     }

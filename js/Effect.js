@@ -18,7 +18,10 @@ export default class Effect {
         this.#initPosition();
 
         this.fIndex = 0;
-        this.fIndexUpdator = setInterval(this.updateIndex, 28, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 28, cr);
+        }, 28, this);
 
         this.scene.objectMap.set(this.id, this);
     }
@@ -31,20 +34,22 @@ export default class Effect {
         this.y = this.scene.map.offsetY + (this.orthoX + this.orthoY) / 2;
     }
 
-    updateIndex(e) {
-        ++e.fIndex;
+    updateIndex() {
+        ++this.fIndex;
 
-        if (e.fIndex > 40)
-            e.removeFromMap();
-        else if (e.fIndex == 20)
-            if (e.enemy == 'skeleton')
-                new Skeleton(e);
-            else if (e.enemy == 'vampire')
-                new Vampire(e);
+        if (this.fIndex > 40)
+            this.removeFromMap();
+
+        else if (this.fIndex == 20)
+            if (this.enemy == 'skeleton')
+                new Skeleton(this);
+
+            else if (this.enemy == 'vampire')
+                new Vampire(this);
     }
 
     removeFromMap() {
-        clearInterval(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
     }
 

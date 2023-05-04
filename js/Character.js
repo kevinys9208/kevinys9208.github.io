@@ -35,15 +35,18 @@ export default class Character {
         this.life = this.maxLife;
 
         this.fIndex = 0;
-        this.fIndexUpdator = setInterval(this.updateIndex, 28, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 28, cr);
+        }, 28, this);
     }
 
-    updateIndex(ch) {
-        if (!ch.isIdle) {
-            if (ch.checkDirOpposite()) {
-                if (--ch.fIndex < 1) {  ch.fIndex = C_WF; }
+    updateIndex() {
+        if (!this.isIdle) {
+            if (this.checkDirOpposite()) {
+                if (--this.fIndex < 1) {  this.fIndex = C_WF; }
             } else {
-                if (++ch.fIndex > C_WF) {  ch.fIndex = 1; }
+                if (++this.fIndex > C_WF) {  this.fIndex = 1; }
             }
         }
     }
@@ -282,7 +285,7 @@ export default class Character {
     }
 
     removeFromMap() {
-        clearInterval(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
     }
 }

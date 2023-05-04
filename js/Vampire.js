@@ -39,7 +39,10 @@ export default class Vampire {
         this.isDamaging = false;
 
         this.fIndex = 0;
-        this.fIndexUpdator = setInterval(this.updateIndex, 28, this);
+        this.fIndexUpdator = setTimeout(function run(c) {
+            c.updateIndex();
+            c.fIndexUpdator = setTimeout(run, 28, cr);
+        }, 28, this);
         
         this.scene.objectMap.set(this.id, this);
         this.scene.enemyMap.set(this.id, this);
@@ -122,11 +125,11 @@ export default class Vampire {
         this.y += ES / 3 * this.diagonalY;
     }
 
-    updateIndex(v) {
-        if (++v.fIndex > E_VF) {
-            v.fIndex = 0;
-            v.updateViewDir();
-            v.attack();
+    updateIndex() {
+        if (++this.fIndex > E_VF) {
+            this.fIndex = 0;
+            this.updateViewDir();
+            this.attack();
         }
     }
 
@@ -234,7 +237,7 @@ export default class Vampire {
     }
 
     removeFromMap() {
-        clearInterval(this.fIndexUpdator);
+        clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.enemyMap.delete(this.id);
     }

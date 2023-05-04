@@ -125,7 +125,11 @@ class GameManager {
             this.mainScene.createObstacle('grave', coordX, coordY, 2, 1);
         }
 
-        this.controlReader = setInterval(this.readControl, 100, this);
+        this.controlReader = setTimeout(function run(cr) {
+            cr.readControl();
+            cr.controlReader = setTimeout(run, 100, cr);
+        }, 100, this);
+        
         this.isStart = true;
 
         this.frameRequest = requestAnimationFrame(this.render);
@@ -134,9 +138,9 @@ class GameManager {
         this.uiBox.style.zIndex = -1;
     }    
 
-    readControl(gm) {
-        gm.readMovement();
-        gm.readAttack();
+    readControl() {
+        this.readMovement();
+        this.readAttack();
     }
     
     readView(x, y) {
@@ -180,7 +184,7 @@ class GameManager {
         this.mainScene.stop();
 
         clearTimeout(this.timeout);
-        clearInterval(this.controlReader);
+        clearTimeout(this.controlReader);
         cancelAnimationFrame(this.frameRequest);
 
         this.stage = 1;
