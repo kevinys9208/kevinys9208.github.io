@@ -9,7 +9,6 @@ export default class Spell {
 
     constructor(dir, x, y, scene, angle) {
         this.id = ++GameManager.id;
-        console.log(this.id);
 
         this.width = SW;
         this.height = SH;
@@ -34,10 +33,10 @@ export default class Spell {
         this.scene.spellMap.set(this.id, this);
 
         this.fIndex = 0;
-        this.fIndexUpdator = setTimeout(function run(c) {
-            c.updateIndex();
-            c.fIndexUpdator = setTimeout(run, 24, c);
-        }, 24, this);
+        // this.fIndexUpdator = setTimeout(function run(c) {
+        //     c.updateIndex();
+        //     c.fIndexUpdator = setTimeout(run, 24, c);
+        // }, 24, this);
     }
 
     updateIndex() {
@@ -84,7 +83,7 @@ export default class Spell {
     }
 
     removeFromMap() {
-        clearTimeout(this.fIndexUpdator);
+        // clearTimeout(this.fIndexUpdator);
         this.scene.objectMap.delete(this.id);
         this.scene.spellMap.delete(this.id);
     }
