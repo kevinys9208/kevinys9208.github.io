@@ -370,7 +370,7 @@ export default class Scene {
     }
 
     stop() {
-        clearInterval(this.coordUpdator);
+        clearTimeout(this.coordUpdator);
         Array
             .from(this.objectMap.values())
             .forEach(o => o.removeFromMap());
