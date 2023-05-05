@@ -178,8 +178,7 @@ class GameManager {
 
     readAttack() {
         if (this.controlMap.get('onclick')) {
-            // this.mainScene.character.attack();
-            this.mainScene.createEnemy(5);
+            this.mainScene.character.attack();
         }
     }
 
