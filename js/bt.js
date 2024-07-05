@@ -315,7 +315,7 @@ function initializeControlEvent() {
 			input.disabled = false;
 			
 		} else {
-			input.value = 'wss://' + ipSelected + '/break';
+			input.value = ipSelected + '/break';
 			input.disabled = true;
 		}
 	});
