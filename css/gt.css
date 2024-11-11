@@ -29,18 +29,18 @@ html, body {
 }
 
 .bg-go {
-    background-color: #29BEB0;
-    border-color: #29BEB0;
+    background-color: #00a7d0;
+    border-color: #00a7d0;
 }
 
 .btn-go {
-    background-color: #29BEB0;
-    border-color: #29BEB0;
+    background-color: #00a7d0;
+    border-color: #00a7d0;
 }
 
 .btn-go:hover, .btn-go:focus {
-    background-color: #1E8A7E;
-    border-color: #1E8A7E;
+    background-color: #00639b;
+    border-color: #00639b;
 }
 
 .timestamp {
