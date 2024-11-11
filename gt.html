@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Talk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F0F0F0;
+        }
+        .chat-container {
+            height: 90vh;
+        }
+        .chat-messages {
+            height: calc(90vh - 150px);
+            overflow-y: auto;
+        }
+        .message {
+            max-width: 70%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .message.sent {
+            background-color: #E1F5F3;
+            margin-left: auto;
+        }
+        .message.received {
+            background-color: #F0F0F0;
+        }
+        .btn-primary {
+            background-color: #29BEB0;
+            border-color: #29BEB0;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #1E8A7E;
+            border-color: #1E8A7E;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container chat-container">
+        <div class="row h-100">
+            <div class="col-md-8 mx-auto d-flex flex-column">
+                <div class="card shadow flex-grow-1">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Go 채팅방</h2>
+                    </div>
+                    <div class="card-body chat-messages" id="chat-messages">
+                        <!-- 예시 대화 내용 -->
+                        <!-- <div class="message received">
+                            <strong>김고팡:</strong> 안녕하세요! Go 언어 스터디 모임에 오신 것을 환영합니다.
+                            <div class="timestamp">오후 2:00</div>
+                        </div>
+                        <div class="message sent">
+                            <strong>나:</strong> 안녕하세요! 참여하게 되어 기쁩니다. Go 언어는 처음이에요.
+                            <div class="timestamp">오후 2:01</div>
+                        </div>
+                        <div class="message received">
+                            <strong>박고루틴:</strong> 반갑습니다! Go 언어는 정말 재미있어요. 특히 동시성 처리가 훌륭하죠.
+                            <div class="timestamp">오후 2:02</div>
+                        </div>
+                        <div class="message received">
+                            <strong>이채널:</strong> 맞아요. 고루틴과 채널 개념이 처음엔 어려울 수 있지만, 익숙해지면 정말 강력해요.
+                            <div class="timestamp">오후 2:03</div>
+                        </div>
+                        <div class="message sent">
+                            <strong>나:</strong> 와, 그렇군요! 고루틴과 채널에 대해 더 자세히 알고 싶어요.
+                            <div class="timestamp">오후 2:04</div>
+                        </div>
+                        <div class="message received">
+                            <strong>김고팡:</strong> 좋아요! 오늘 스터디에서 바로 그 주제로 이야기 나눠볼까요?
+                            <div class="timestamp">오후 2:05</div>
+                        </div> -->
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" id="message-input" class="form-control" placeholder="메시지를 입력하세요...">
+                            <button class="btn btn-primary" type="button" id="send-button">전송</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.onclick = function() {
+            sendMessage();
+        };
+
+        messageInput.onkeypress = function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        };
+
+        function sendMessage() {
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                addMessage('나', messageText, true);
+                messageInput.value = '';
+            }
+        }
+
+        function addMessage(sender, text, isSent) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', isSent ? 'sent' : 'received');
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                               now.getMinutes().toString().padStart(2, '0');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${text}
+                                        <div class="timestamp">${timeString}</div>`;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
