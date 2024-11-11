@@ -29,6 +29,10 @@
         .message.received {
             background-color: #F0F0F0;
         }
+        .bg-go {
+            background-color: #29BEB0;
+            border-color: #29BEB0;
+        }
         .btn-primary {
             background-color: #29BEB0;
             border-color: #29BEB0;
@@ -47,37 +51,12 @@
 <body>
     <div class="container chat-container">
         <div class="row h-100">
-            <div class="col-md-8 mx-auto d-flex flex-column">
+            <div class="col-md-8 mx-auto d-flex flex-column align-items-center">
                 <div class="card shadow flex-grow-1">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-go text-white">
                         <h2 class="mb-0">Go 채팅방</h2>
                     </div>
                     <div class="card-body chat-messages" id="chat-messages">
-                        <!-- 예시 대화 내용 -->
-                        <!-- <div class="message received">
-                            <strong>김고팡:</strong> 안녕하세요! Go 언어 스터디 모임에 오신 것을 환영합니다.
-                            <div class="timestamp">오후 2:00</div>
-                        </div>
-                        <div class="message sent">
-                            <strong>나:</strong> 안녕하세요! 참여하게 되어 기쁩니다. Go 언어는 처음이에요.
-                            <div class="timestamp">오후 2:01</div>
-                        </div>
-                        <div class="message received">
-                            <strong>박고루틴:</strong> 반갑습니다! Go 언어는 정말 재미있어요. 특히 동시성 처리가 훌륭하죠.
-                            <div class="timestamp">오후 2:02</div>
-                        </div>
-                        <div class="message received">
-                            <strong>이채널:</strong> 맞아요. 고루틴과 채널 개념이 처음엔 어려울 수 있지만, 익숙해지면 정말 강력해요.
-                            <div class="timestamp">오후 2:03</div>
-                        </div>
-                        <div class="message sent">
-                            <strong>나:</strong> 와, 그렇군요! 고루틴과 채널에 대해 더 자세히 알고 싶어요.
-                            <div class="timestamp">오후 2:04</div>
-                        </div>
-                        <div class="message received">
-                            <strong>김고팡:</strong> 좋아요! 오늘 스터디에서 바로 그 주제로 이야기 나눠볼까요?
-                            <div class="timestamp">오후 2:05</div>
-                        </div> -->
                     </div>
                     <div class="card-footer">
                         <div class="input-group">
@@ -89,9 +68,82 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="connectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="connectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="connectModalLabel">GO Talk</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="connectForm">
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">이름</label>
+                            <input type="text" class="form-control" id="userName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomId" class="form-label">채팅방 ID</label>
+                            <input type="text" class="form-control" id="roomId" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="connectWebSocket()">채팅방 접속</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let socket;
+
+        let roomId;
+        let userName;
+
+        let myModal;
+        
+
+        window.onload = function() {
+            myModal = new bootstrap.Modal(document.getElementById('connectModal'));
+            myModal.show();
+        };
+
+        function connectWebSocket() {
+            userName = document.getElementById('userName').value.trim();
+            roomId = document.getElementById('roomId').value.trim();
+
+            if (userName) {
+                socket = new WebSocket(`kevinys.duckdns.org/ws?userName=${userName}&roomId=${roomId}`);
+
+                socket.onopen = function(e) {
+                    console.log("웹소켓 연결 성공");
+                    myModal.hide();
+                };
+
+                socket.onmessage = function(event) {
+                    var data = event.data.split(':');
+                    var from = data[0];
+                    
+                    switch (from) {
+                        case 'room':
+                            roomId = data[1];
+                            userName = data[2];
+                            break;
+                        case 'client':
+                            addMessage(data[1], data[2]);
+                            break;
+                    }
+                };
+
+                socket.onclose = function(event) {
+                    console.log("웹소켓 연결 종료");
+                };
+
+            } else {
+                alert("이름은 필수로 입력해주세요!");
+            }
+        }
+
         const chatMessages = document.getElementById('chat-messages');
         const messageInput = document.getElementById('message-input');
         const sendButton = document.getElementById('send-button');
@@ -107,9 +159,9 @@
         };
 
         function sendMessage() {
-            const messageText = messageInput.value.trim();
-            if (messageText) {
-                addMessage('나', messageText, true);
+            const message = messageInput.value;
+            if (message && socket.readyState === WebSocket.OPEN) {
+                socket.send(message);
                 messageInput.value = '';
             }
         }
@@ -117,11 +169,14 @@
         function addMessage(sender, text, isSent) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', isSent ? 'sent' : 'received');
+
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                                now.getMinutes().toString().padStart(2, '0');
+
             messageElement.innerHTML = `<strong>${sender}:</strong> ${text}
                                         <div class="timestamp">${timeString}</div>`;
+
             chatMessages.appendChild(messageElement);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
