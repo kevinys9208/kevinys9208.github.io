@@ -46,7 +46,6 @@ function connectWebSocket() {
             switch (from) {
                 case 'room':
                     roomId = data[1];
-                    userName = data[2];
                     document.getElementById('roomIdLabel').innerHTML = roomId
                     break;
                 case 'client':
