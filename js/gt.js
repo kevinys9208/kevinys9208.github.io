@@ -4,11 +4,27 @@ let roomId;
 let userName;
 
 let myModal;
-
+let chatMessages;
+let messageInput;
+let sendButton;
 
 window.onload = function() {
     myModal = new bootstrap.Modal(document.getElementById('connectModal'));
     myModal.show();
+
+    chatMessages = document.getElementById('chat-messages');
+    messageInput = document.getElementById('message-input');
+    sendButton = document.getElementById('send-button');
+
+    sendButton.onclick = function() {
+        sendMessage();
+    };
+    
+    messageInput.onkeypress = function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    };
 };
 
 function connectWebSocket() {
@@ -46,20 +62,6 @@ function connectWebSocket() {
         alert("이름은 필수로 입력해주세요!");
     }
 }
-
-const chatMessages = document.getElementById('chat-messages');
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-
-sendButton.onclick = function() {
-    sendMessage();
-};
-
-messageInput.onkeypress = function(e) {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-};
 
 function sendMessage() {
     const message = messageInput.value;
