@@ -47,6 +47,7 @@ function connectWebSocket() {
                 case 'room':
                     roomId = data[1];
                     userName = data[2];
+                    document.getElementById('roomIdLabel').innerHTML = roomId
                     break;
                 case 'client':
                     addMessage(data[1], data[2]);
@@ -71,9 +72,9 @@ function sendMessage() {
     }
 }
 
-function addMessage(sender, text, isSent) {
+function addMessage(sender, text) {
     const messageElement = document.createElement('div');
-    messageElement.classList.add('message', isSent ? 'sent' : 'received');
+    messageElement.classList.add('message', userName == sender ? 'sent' : 'received');
 
     const now = new Date();
     const timeString = now.getHours().toString().padStart(2, '0') + ':' + 

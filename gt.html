@@ -19,6 +19,7 @@
                 <div class="card shadow flex-grow-1">
                     <div class="card-header bg-go text-white">
                         <h2 class="mb-0">Go 채팅방</h2>
+                        <p>Room ID: <span id="roomIdLabel"></span></p>
                     </div>
                     <div class="card-body chat-messages" id="chat-messages">
                     </div>
@@ -37,7 +38,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="connectModalLabel">GO Talk</h5>
+                    <h5 class="modal-title bg-go text-white" id="connectModalLabel">GO Talk</h5>
                 </div>
                 <div class="modal-body">
                     <form id="connectForm">
@@ -52,7 +53,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-go" onclick="connectWebSocket()">채팅방 접속</button>
+                    <button type="button" class="btn btn-go text-white" onclick="connectWebSocket()">채팅방 접속</button>
                 </div>
             </div>
         </div>
